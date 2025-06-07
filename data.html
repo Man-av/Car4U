@@ -1,0 +1,53 @@
+    <title>Car4u-SellData</title>
+<!-- linked CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: larger;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        background-color: #fff;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+
+    <!-- icon -->
+    <link rel="icon" type="image/svg+xml" href="images/car-solid.svg">
+
+<h1 class="heading"><span>Saved Cars</span></h1>
+<h1><ul id="carList"></ul></h1>
+
+<script>
+  const allCars = JSON.parse(localStorage.getItem('cars')) || [];
+  const carList = document.getElementById('carList');
+
+  if (allCars.length === 0) {
+    carList.innerHTML = '<li>No cars saved yet.</li>';
+  } else {
+    allCars.forEach(car => {
+      const li = document.createElement('li');
+      li.textContent = `${car.carName} (${car.year}) - Fuel: ${car.fuelType}, Transmission: ${car.transmission}, Mileage: ${car.mileage} km/l, Price: Rs. ${car.price}, Contact: ${car.contact}`;
+      carList.appendChild(li);
+    });
+  }
+</script>
